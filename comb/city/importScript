@@ -1,0 +1,15 @@
+import bpy
+import glob
+import os
+
+importDir = "C:\\Users\\OWNER\\Desktop\\city\\11SW9C"
+
+#path_to_fbx_dir = os.path.join(importDir)
+file_list = sorted(os.listdir(importDir))
+for itemA in file_list:
+    #print(file_list)
+    path_to_fbx_dir = os.path.join(importDir+"\\"+itemA)
+    file_list_inner = sorted(os.listdir(path_to_fbx_dir))
+    fbx_list = [item for item in file_list_inner if item.endswith(".FBX")]
+    path_to_fbx_dir = os.path.join(importDir+"\\"+itemA+"\\"+fbx_list[0])
+    bpy.ops.import_scene.fbx(filepath = path_to_fbx_dir, filter_glob=".fbx;.mtl", axis_forward="-Z", axis_up="Y")
